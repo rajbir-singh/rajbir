@@ -1,0 +1,4 @@
+domain\User.class
+domain\Post.class
+repository\UserRepository.class
+repository\PostRepository.class
