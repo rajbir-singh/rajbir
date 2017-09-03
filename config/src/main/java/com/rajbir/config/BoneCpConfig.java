@@ -19,8 +19,8 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@EnableJpaRepositories("com.rajbir.core.domain.repository")
-@PropertySource("classpath:/boneCp.properties")
+@EnableJpaRepositories(value = "com.rajbir.core.repository")
+@PropertySource("classpath:boneCp.properties")
 public class BoneCpConfig {
 
     private static final String[] PACKAGES_TO_SCAN = {"com.rajbir.core.domain"};
@@ -87,7 +87,7 @@ public class BoneCpConfig {
         if (env.getProperty("spring.profiles.active").equals("local")) {
             vendorAdapter.setGenerateDdl(true);
         } else {
-            vendorAdapter.setGenerateDdl(false);
+            vendorAdapter.setGenerateDdl(true);
         }
         vendorAdapter.setShowSql(true);
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();

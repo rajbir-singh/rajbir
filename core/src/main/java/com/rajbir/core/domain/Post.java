@@ -1,13 +1,27 @@
 package com.rajbir.core.domain;
 
-        import javax.validation.constraints.NotNull;
-        import java.util.Date;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Index;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 /**
  * Created by Sony on 30-08-2017.
  */
+@Entity(name = "post")
+@Table(name = "post",
+        indexes = {
+                @Index(name = "index_postId", columnList = "postId")})
+
 public class Post {
-    private Long id;
+
+    @Id
+    @GeneratedValue
+    private Long postId;
 
     @NotNull
     private String message;
@@ -21,16 +35,16 @@ public class Post {
     public Post() {
     }
 
-    public Post(Long id, String message, Date time, Double latitude, Double longitude) {
-        this.id = id;
+    public Post(Long postId, String message, Date time, Double latitude, Double longitude) {
+        this.postId = postId;
         this.message = message;
         this.time = time;
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPostId() {
+        return postId;
     }
 
     public String getMessage() {
@@ -64,9 +78,9 @@ public class Post {
 
         Post post = (Post) o;
 
-        if (!id.equals(post.id)) return false;
-        if (message != null ? !message.equals(post.message) : post.message != null) return false;
-        if (time != null ? !time.equals(post.time) : post.time != null) return false;
+        if (postId != null ? !postId.equals(post.postId) : post.postId != null) return false;
+        if (!message.equals(post.message)) return false;
+        if (!time.equals(post.time)) return false;
         if (latitude != null ? !latitude.equals(post.latitude) : post.latitude != null) return false;
         return longitude != null ? longitude.equals(post.longitude) : post.longitude == null;
 
@@ -74,9 +88,9 @@ public class Post {
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + (message != null ? message.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
+        int result = postId != null ? postId.hashCode() : 0;
+        result = 31 * result + message.hashCode();
+        result = 31 * result + time.hashCode();
         result = 31 * result + (latitude != null ? latitude.hashCode() : 0);
         result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
         return result;

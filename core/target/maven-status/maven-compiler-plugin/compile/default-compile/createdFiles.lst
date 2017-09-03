@@ -1,4 +1,6 @@
-domain\User.class
-domain\Post.class
-repository\UserRepository.class
-repository\PostRepository.class
+com\rajbir\core\domain\User.class
+com\rajbir\core\repository\UserRepository.class
+com\rajbir\core\domain\Post.class
+com\rajbir\core\repository\PostRepository.class
+com\rajbir\core\repository\PostRepositoryImpl.class
+com\rajbir\core\repository\PostRepositoryCustom.class

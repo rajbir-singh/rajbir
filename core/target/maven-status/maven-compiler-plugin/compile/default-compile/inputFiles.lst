@@ -1,4 +1,6 @@
-C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\repository\UserRepository.java
-C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\domain\User.java
-C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\domain\Post.java
-C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\repository\PostRepository.java
+C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\com\rajbir\core\repository\UserRepository.java
+C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\com\rajbir\core\repository\PostRepository.java
+C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\com\rajbir\core\repository\PostRepositoryCustom.java
+C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\com\rajbir\core\domain\User.java
+C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\com\rajbir\core\repository\PostRepositoryImpl.java
+C:\Users\Sony\Documents\GitHub\springMVC\rajbir\core\src\main\java\com\rajbir\core\domain\Post.java
