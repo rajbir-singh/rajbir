@@ -1,12 +1,6 @@
 package com.rajbir.core.domain;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Index;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -20,16 +14,18 @@ import java.util.Date;
 public class Post {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long postId;
 
-    @NotNull
+    @Column(nullable = false, length = 100)
     private String message;
 
-    //    @NotNull
+    @Column(nullable = false, length = 100)
     private Date time;
 
+    @Column(nullable = true, length = 100)
     private Double latitude;
+    @Column(nullable = true, length = 100)
     private Double longitude;
 
     public Post() {

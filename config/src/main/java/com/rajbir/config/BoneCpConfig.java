@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  */
 
 @Configuration
-@EnableJpaRepositories(value = "com.rajbir.core.repository")
+@EnableJpaRepositories("com.rajbir.core.repository")
 @PropertySource("classpath:boneCp.properties")
 public class BoneCpConfig {
 
@@ -65,6 +65,7 @@ public class BoneCpConfig {
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         BoneCPDataSource dataSource = new BoneCPDataSource();
+        System.out.println("yoody");
         dataSource.setDriverClass(driverClass);
         dataSource.setJdbcUrl(jdbcUrl);
         dataSource.setUsername(jdbcUsername);

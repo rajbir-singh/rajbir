@@ -11,12 +11,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.SpringVersion;
 import org.springframework.core.env.Environment;
 
-import java.util.Arrays;
-
 @SpringBootApplication
+@ComponentScan(value = {"com.rajbir.core", "com.rajbir.web"})
 @PropertySource("classpath:boneCp.properties")
 public class Application {
 
@@ -33,7 +34,13 @@ public class Application {
     @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
+
+            //get spring version
+            System.out.println("spring version: " + SpringVersion.getVersion());
+
             //print all classpaths, jdk's jars, maven repo's jars, project's target folder (containing class files)
+            System.out.println("system classpath");
+            System.getProperty("java.classpath");
 //            ClassLoader cl = ClassLoader.getSystemClassLoader();
 //
 //            URL[] urls = ((URLClassLoader)cl).getURLs();
@@ -43,18 +50,18 @@ public class Application {
 //            }
 
 
-            System.out.println("Testing env");
-            System.out.println(driverClass);
-            System.out.println(env.getProperty("bonecp.driverClass"));
-
-
-            System.out.println("Let's inspect the beans provided by Spring Boot:");
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                System.out.println(beanName);
-            }
+//            System.out.println("Testing env");
+//            System.out.println(driverClass);
+//            System.out.println(env.getProperty("bonecp.driverClass"));
+//
+//
+//            System.out.println("Let's inspect the beans provided by Spring Boot:");
+//
+//            String[] beanNames = ctx.getBeanDefinitionNames();
+//            Arrays.sort(beanNames);
+//            for (String beanName : beanNames) {
+//                System.out.println(beanName);
+//            }
 
         };
     }

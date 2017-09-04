@@ -25,7 +25,8 @@ public class HomeController {
 
     @RequestMapping(value = "/posts", method = RequestMethod.GET)
     public List<Post> getPosts() {
-        return postRepository.findPosts();
+        return postRepository.findAll();
+//        return null;
     }
 
 //    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
