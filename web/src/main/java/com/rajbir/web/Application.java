@@ -17,7 +17,7 @@ import org.springframework.core.SpringVersion;
 import org.springframework.core.env.Environment;
 
 @SpringBootApplication
-@ComponentScan(value = {"com.rajbir.core", "com.rajbir.web"})
+@ComponentScan(value = {"com.rajbir"})
 @PropertySource("classpath:boneCp.properties")
 public class Application {
 

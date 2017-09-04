@@ -8,6 +8,8 @@ import javax.validation.constraints.Size;
 /**
  * Created by Sony on 30-08-2017.
  */
+//@Entity(name="user")
+
 public class User {
     public Long id;
 
