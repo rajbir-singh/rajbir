@@ -2,59 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2ef7f14b-e989-4eb1-a854-1f47e4f1bb07" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/service/GoogleLoginService.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_1_3_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_jdo_jdo2_api_2_3_eb.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_transaction_transaction_api_1_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/src/main/java/com/rajbir/config/BaseController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config/src/main/java/com/rajbir/config/RestResponse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/controller/GoogleLoginController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/converter/DtoConverter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/converter/UserDtoConverter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/service/GoogleLoginService.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_6_0_6.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/config/target/classes/com/rajbir/config/BoneCpConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/src/main/java/com/rajbir/web/contorller/HomeController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/target/classes/com/rajbir/web/contorller/HomeController.class" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/config/src/main/java/com/rajbir/config/BoneCpConfig.java" afterPath="$PROJECT_DIR$/config/src/main/java/com/rajbir/config/MysqlConfig.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/target/config-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/config/target/config-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/domain/Post.class" afterPath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/domain/Post.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/domain/User.class" afterPath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/domain/User.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/PostRepository.class" afterPath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/PostRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/PostRepositoryCustom.class" afterPath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/PostRepositoryCustom.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/PostRepositoryImpl.class" afterPath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/PostRepositoryImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/UserRepository.class" afterPath="$PROJECT_DIR$/core/target/classes/com/rajbir/core/repository/UserRepository.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/core-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/core/target/core-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/target/classes/com/rajbir/web/Application.class" afterPath="$PROJECT_DIR$/web/target/classes/com/rajbir/web/Application.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT.jar.original" afterPath="$PROJECT_DIR$/web/target/web-1.0-SNAPSHOT.jar.original" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.iml" afterPath="$PROJECT_DIR$/config/config.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/pom.xml" afterPath="$PROJECT_DIR$/config/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/src/main/resources/boneCp.properties" afterPath="$PROJECT_DIR$/config/src/main/resources/boneCp.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/target/classes/boneCp.properties" afterPath="$PROJECT_DIR$/config/target/classes/boneCp.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/config/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/core.iml" afterPath="$PROJECT_DIR$/core/core.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/pom.xml" afterPath="$PROJECT_DIR$/core/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/domain/Post.java" afterPath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/domain/Post.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/domain/User.java" afterPath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/domain/User.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/repository/UserRepository.java" afterPath="$PROJECT_DIR$/core/src/main/java/com/rajbir/core/repository/UserRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/core/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/core/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rajbir.iml" afterPath="$PROJECT_DIR$/rajbir.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/java/com/rajbir/web/Application.java" afterPath="$PROJECT_DIR$/web/src/main/java/com/rajbir/web/Application.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/web/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterPath="$PROJECT_DIR$/web/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/web/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/web.iml" afterPath="$PROJECT_DIR$/web/web.iml" />
     </list>
     <ignored path="rajbir.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -1384,12 +1332,12 @@
       <workItem from="1505962155898" duration="970000" />
       <workItem from="1505972576846" duration="482000" />
       <workItem from="1505981480241" duration="2883000" />
-      <workItem from="1505987112136" duration="5089000" />
+      <workItem from="1505987112136" duration="5091000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="178448000" />
+    <option name="totallyTimeSpent" value="178450000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
