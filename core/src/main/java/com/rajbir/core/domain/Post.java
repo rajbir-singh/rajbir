@@ -1,7 +1,7 @@
 package com.rajbir.core.domain;
 
 import javax.persistence.*;
-import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by Sony on 30-08-2017.
@@ -15,81 +15,163 @@ public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
+    @Column(length = 100)
     private Long postId;
 
-    @Column(nullable = false, length = 100)
+    @NotNull
+    @Column(length = 512)
     private String message;
 
-    @Column(nullable = false, length = 100)
-    private Date time;
+    @NotNull
+    @Column(length = 100)
+    private Long time;
 
-    @Column(nullable = true, length = 100)
-    private Double latitude;
-    @Column(nullable = true, length = 100)
-    private Double longitude;
+    @NotNull
+    @Column(length = 100)
+    private String byUserId;
 
+    @NotNull
+    @Column(length = 100)
+    private String byUserName;
+
+    //unidirectional oneToMany mapping with posts, as of now I do need all posts of a group, not the other way around.
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Group.class)
+//    @JoinColumn(name = "groupId", nullable = false, referencedColumnName = "groupId")
+//    private Group group;
+
+//    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = OrderAddress.class)
+//    @JoinColumn(name = "shippingAddressId", nullable = false, referencedColumnName = "orderAddressId")
+//    private OrderAddress shippingAddress;
+//
+//    OrderAddress.class
+//    @Column(nullable = false, length = 100)
+//    private String orderAddressId;
+
+//    @Column(nullable = true, length = 100)
+//    private Double latitude;
+//
+//    @Column(nullable = true, length = 100)
+//    private Double longitude;
+
+    //Hibernate requires no-args constructor
     public Post() {
-    }
-
-    public Post(Long postId, String message, Date time, Double latitude, Double longitude) {
-        this.postId = postId;
-        this.message = message;
-        this.time = time;
-        this.latitude = latitude;
-        this.longitude = longitude;
     }
 
     public Long getPostId() {
         return postId;
     }
 
+    public void setPostId(Long postId) {
+        this.postId = postId;
+    }
+
     public String getMessage() {
         return message;
     }
 
-    public Date getTime() {
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Long getTime() {
         return time;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public void setTime(Long time) {
+        this.time = time;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public String getByUserId() {
+        return byUserId;
     }
 
-    public Double getLongitude() {
-        return longitude;
+    public void setByUserId(String byUserId) {
+        this.byUserId = byUserId;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public String getByUserName() {
+        return byUserName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Post post = (Post) o;
-
-        if (postId != null ? !postId.equals(post.postId) : post.postId != null) return false;
-        if (!message.equals(post.message)) return false;
-        if (!time.equals(post.time)) return false;
-        if (latitude != null ? !latitude.equals(post.latitude) : post.latitude != null) return false;
-        return longitude != null ? longitude.equals(post.longitude) : post.longitude == null;
-
+    public void setByUserName(String byUserName) {
+        this.byUserName = byUserName;
     }
 
-    @Override
-    public int hashCode() {
-        int result = postId != null ? postId.hashCode() : 0;
-        result = 31 * result + message.hashCode();
-        result = 31 * result + time.hashCode();
-        result = 31 * result + (latitude != null ? latitude.hashCode() : 0);
-        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
-        return result;
+    public Post(String message, Long time, String byUserId, String byUserName) {
+        this.message = message;
+        this.time = time;
+        this.byUserId = byUserId;
+        this.byUserName = byUserName;
+    }
+
+    public static interface MessageStep {
+        TimeStep withMessage(String message);
+    }
+
+    public static interface TimeStep {
+        ByUserIdStep withTime(Long time);
+    }
+
+    public static interface ByUserIdStep {
+        ByUserNameStep withByUserId(String byUserId);
+    }
+
+    public static interface ByUserNameStep {
+        BuildStep withByUserName(String byUserName);
+    }
+
+    public static interface BuildStep {
+        Post build();
+    }
+
+
+    public static class Builder implements MessageStep, TimeStep, ByUserIdStep, ByUserNameStep, BuildStep {
+        private String message;
+        private Long time;
+        private String byUserId;
+        private String byUserName;
+
+        public Builder() {
+        }
+
+        public static MessageStep post() {
+            return new Builder();
+        }
+
+        @Override
+        public TimeStep withMessage(String message) {
+            this.message = message;
+            return this;
+        }
+
+        @Override
+        public ByUserIdStep withTime(Long time) {
+            this.time = time;
+            return this;
+        }
+
+        @Override
+        public ByUserNameStep withByUserId(String byUserId) {
+            this.byUserId = byUserId;
+            return this;
+        }
+
+        @Override
+        public BuildStep withByUserName(String byUserName) {
+            this.byUserName = byUserName;
+            return this;
+        }
+
+        @Override
+        public Post build() {
+            return new Post(
+                    this.message,
+                    this.time,
+                    this.byUserId,
+                    this.byUserName
+            );
+        }
     }
 }
 
