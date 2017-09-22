@@ -104,6 +104,7 @@
 package com.rajbir.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -181,36 +182,46 @@ public class MysqlConfig {
 
     @Bean
     @Profile("live")
-    public DataSource liveDataSource() throws URISyntaxException {
+//    public DataSource liveDataSource() throws URISyntaxException {
+//        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+//
+//        String username = dbUri.getUserInfo().split(":")[0];
+//        String password = dbUri.getUserInfo().split(":")[1];
+//        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+//        logger.error("################################");
+//        logger.error("dbUrl" + dbUrl);
+//        logger.error("dbUri" + dbUri.getUserInfo());
+//        BoneCPDataSource dataSource = new BoneCPDataSource();
+//        dataSource.setUsername(username);
+//        dataSource.setPassword(password);
+//        dataSource.setDriverClass(driverClass);
+//        dataSource.setJdbcUrl(dbUrl);
+//        dataSource.setUsername(username);
+//        dataSource.setPassword(password);
+//        dataSource.setIdleConnectionTestPeriodInMinutes(idleConnectionTestPeriodInMinutes);
+//        dataSource.setIdleMaxAgeInMinutes(idleMaxAgeInMinutes);
+//        dataSource.setMaxConnectionsPerPartition(maxConnectionsPerPartition);
+//        dataSource.setMinConnectionsPerPartition(minConnectionsPerPartition);
+//        dataSource.setPartitionCount(partitionCount);
+//        dataSource.setAcquireIncrement(acquireIncrement);
+//        dataSource.setStatementsCacheSize(statementsCacheSize);
+//
+//        return dataSource;
+//    }
+
+    public BasicDataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-        logger.error("################################");
-        logger.error("################################");
-        logger.error("\n");
-        logger.error("################################");
-        logger.error(dbUrl);
-        logger.error("\n");
-        logger.error("################################");
-        logger.error(dbUri.getUserInfo());
-        BoneCPDataSource dataSource = new BoneCPDataSource();
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        dataSource.setDriverClass(driverClass);
-        dataSource.setJdbcUrl(dbUrl);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
-        dataSource.setIdleConnectionTestPeriodInMinutes(idleConnectionTestPeriodInMinutes);
-        dataSource.setIdleMaxAgeInMinutes(idleMaxAgeInMinutes);
-        dataSource.setMaxConnectionsPerPartition(maxConnectionsPerPartition);
-        dataSource.setMinConnectionsPerPartition(minConnectionsPerPartition);
-        dataSource.setPartitionCount(partitionCount);
-        dataSource.setAcquireIncrement(acquireIncrement);
-        dataSource.setStatementsCacheSize(statementsCacheSize);
 
-        return dataSource;
+        BasicDataSource basicDataSource = new BasicDataSource();
+        basicDataSource.setUrl(dbUrl);
+        basicDataSource.setUsername(username);
+        basicDataSource.setPassword(password);
+
+        return basicDataSource;
     }
 
     @Bean(destroyMethod = "close")
@@ -237,7 +248,7 @@ public class MysqlConfig {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.MYSQL);
 
-        DataSource dataSource;
+        BasicDataSource dataSource = null;
         //NOTE
         //causes hibernate to create new tables from POJOs with @Table/@Entity annotation
 //        vendorAdapter.setGenerateDdl(true);
@@ -245,10 +256,10 @@ public class MysqlConfig {
 
         if (env.getProperty("spring.profiles.active").equals("local")) {
             vendorAdapter.setGenerateDdl(true);
-            dataSource = localDataSource();
+//            dataSource = localDataSource();
         } else {
             vendorAdapter.setGenerateDdl(true);
-            dataSource = liveDataSource();
+            dataSource = dataSource();
         }
         vendorAdapter.setShowSql(true);
 
