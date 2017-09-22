@@ -104,6 +104,8 @@
 package com.rajbir.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -135,6 +137,8 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource("classpath:boneCp.properties")
 public class MysqlConfig {
+
+    private static Logger logger = LoggerFactory.getLogger(MysqlConfig.class);
 
     private static final String[] PACKAGES_TO_SCAN = {"com.rajbir.core.domain"};
 
@@ -183,7 +187,11 @@ public class MysqlConfig {
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-
+        logger.error("################################");
+        logger.error("################################");
+        logger.error("\n");
+        logger.error("################################");
+        logger.error(dbUrl);
         BoneCPDataSource dataSource = new BoneCPDataSource();
         dataSource.setUsername(username);
         dataSource.setPassword(password);
@@ -229,7 +237,7 @@ public class MysqlConfig {
         DataSource dataSource;
         //NOTE
         //causes hibernate to create new tables from POJOs with @Table/@Entity annotation
-        //vendorAdapter.setGenerateDdl(true);
+//        vendorAdapter.setGenerateDdl(true);
         //if this is set false and you try to run sql query/jpa method on some new entity without manual migration (adding the new table to DB by hand) you'll get SQLGrammer Exception could not extract ResultSet; SQL [n/a]
 
         if (env.getProperty("spring.profiles.active").equals("local")) {
@@ -250,10 +258,9 @@ public class MysqlConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
-
         return transactionManager;
     }
 
