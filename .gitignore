@@ -4,8 +4,8 @@
 .DS_Store
 /target
 /web/target
-/core/target/
-/config/target/
+/core/target
+/config/target
 /.idea
 *.iml
 *.ipr
