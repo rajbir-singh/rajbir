@@ -130,11 +130,11 @@
                             <!--<appName>rajbir</appName>-->
                             <!--<includeTarget>false</includeTarget>-->
                             <!--<includes>-->
-                                <!--<include>com.rajbir</include>-->
+                                <!--<include>rajbir</include>-->
                             <!--</includes>-->
                             <!--<jdkVersion>1.8</jdkVersion>-->
                             <!--<processTypes>-->
-                                <!--<web>java $JAVA_OPTS -jar com.rajbir &#45;&#45;spring.profiles.active=live</web>-->
+                                <!--<web>java $JAVA_OPTS -jar rajbir &#45;&#45;spring.profiles.active=live</web>-->
                             <!--</processTypes>-->
                         <!--</configuration>-->
                         <!--<executions>-->
