@@ -1,1 +1,4 @@
-com\rajbir\config\BoneCpConfig.class
+com\rajbir\config\MysqlConfig.class
+com\rajbir\config\RestResponse.class
+com\rajbir\config\BaseController.class
+com\rajbir\config\WebConfig.class

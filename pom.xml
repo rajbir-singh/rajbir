@@ -107,5 +107,49 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>live</id>
+            <activation>
+                <property>
+                    <name>live</name>
+                </property>
+            </activation>
+            <build>
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.heroku.sdk/heroku-maven-plugin &ndash;&gt;-->
+                            <!--<groupId>com.heroku.sdk</groupId>-->
+                            <!--<artifactId>heroku-maven-plugin</artifactId>-->
+                            <!--<version>1.2.0</version>-->
+
+                        <!--&lt;!&ndash;<groupId>com.heroku.sdk</groupId>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<artifactId>heroku-maven-plugin</artifactId>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<version>1.1.1</version>&ndash;&gt;-->
+                        <!--<configuration>-->
+                            <!--<appName>rajbir</appName>-->
+                            <!--<includeTarget>false</includeTarget>-->
+                            <!--<includes>-->
+                                <!--<include>com.rajbir</include>-->
+                            <!--</includes>-->
+                            <!--<jdkVersion>1.8</jdkVersion>-->
+                            <!--<processTypes>-->
+                                <!--<web>java $JAVA_OPTS -jar com.rajbir &#45;&#45;spring.profiles.active=live</web>-->
+                            <!--</processTypes>-->
+                        <!--</configuration>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<phase>verify</phase>-->
+                                <!--<goals>-->
+                                    <!--<goal>deploy</goal>-->
+                                <!--</goals>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            </build>
+        </profile>
+    </profiles>
+
 
 </project>
