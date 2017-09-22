@@ -192,6 +192,9 @@ public class MysqlConfig {
         logger.error("\n");
         logger.error("################################");
         logger.error(dbUrl);
+        logger.error("\n");
+        logger.error("################################");
+        logger.error(dbUri.getUserInfo());
         BoneCPDataSource dataSource = new BoneCPDataSource();
         dataSource.setUsername(username);
         dataSource.setPassword(password);
