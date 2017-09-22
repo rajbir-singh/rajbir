@@ -1,1 +1,1 @@
-web: java -jar target/rajbir-1.0-SNAPSHOT.jar
+web: cd web; mvn spring-boot:run
