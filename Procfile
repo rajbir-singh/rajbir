@@ -1,1 +1,1 @@
-web: cd web; mvn spring-boot:run
+web: cd web; ls
