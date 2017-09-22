@@ -182,33 +182,6 @@ public class MysqlConfig {
 
     @Bean
     @Profile("live")
-//    public DataSource liveDataSource() throws URISyntaxException {
-//        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
-//
-//        String username = dbUri.getUserInfo().split(":")[0];
-//        String password = dbUri.getUserInfo().split(":")[1];
-//        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
-//        logger.error("################################");
-//        logger.error("dbUrl" + dbUrl);
-//        logger.error("dbUri" + dbUri.getUserInfo());
-//        BoneCPDataSource dataSource = new BoneCPDataSource();
-//        dataSource.setUsername(username);
-//        dataSource.setPassword(password);
-//        dataSource.setDriverClass(driverClass);
-//        dataSource.setJdbcUrl(dbUrl);
-//        dataSource.setUsername(username);
-//        dataSource.setPassword(password);
-//        dataSource.setIdleConnectionTestPeriodInMinutes(idleConnectionTestPeriodInMinutes);
-//        dataSource.setIdleMaxAgeInMinutes(idleMaxAgeInMinutes);
-//        dataSource.setMaxConnectionsPerPartition(maxConnectionsPerPartition);
-//        dataSource.setMinConnectionsPerPartition(minConnectionsPerPartition);
-//        dataSource.setPartitionCount(partitionCount);
-//        dataSource.setAcquireIncrement(acquireIncrement);
-//        dataSource.setStatementsCacheSize(statementsCacheSize);
-//
-//        return dataSource;
-//    }
-
     public BasicDataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 
@@ -248,7 +221,7 @@ public class MysqlConfig {
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         vendorAdapter.setDatabase(Database.MYSQL);
 
-        BasicDataSource dataSource = null;
+        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         //NOTE
         //causes hibernate to create new tables from POJOs with @Table/@Entity annotation
 //        vendorAdapter.setGenerateDdl(true);
@@ -256,17 +229,15 @@ public class MysqlConfig {
 
         if (env.getProperty("spring.profiles.active").equals("local")) {
             vendorAdapter.setGenerateDdl(true);
-//            dataSource = localDataSource();
+            entityManager.setDataSource(localDataSource());
         } else {
             vendorAdapter.setGenerateDdl(true);
-            dataSource = dataSource();
+            entityManager.setDataSource(dataSource());
         }
         vendorAdapter.setShowSql(true);
 
-        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setJpaVendorAdapter(vendorAdapter);
         entityManager.setPackagesToScan(PACKAGES_TO_SCAN);
-        entityManager.setDataSource(dataSource);
         entityManager.setJpaProperties(additionalJPAProperties());
         return entityManager;
     }
