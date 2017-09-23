@@ -104,6 +104,7 @@
 package com.rajbir.config;
 
 import com.jolbox.bonecp.BoneCPDataSource;
+import com.rajbir.config.enums.Constants;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -183,7 +184,7 @@ public class MysqlConfig {
     @Bean
     @Profile("live")
     public BasicDataSource dataSource() throws URISyntaxException {
-        URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+        URI dbUri = new URI(System.getenv(Constants.CLEARDB_DATABASE_URL));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];

@@ -4,6 +4,7 @@
 
 package com.rajbir.web;
 
+import com.rajbir.config.enums.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -30,7 +31,8 @@ public class Application {
 //    String driverClass;
 
     public static void main(String[] args) {
-        System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, "live");
+        String activeProfile = System.getenv(Constants.ACTIVE_PROFILE);
+        System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, activeProfile != null ? activeProfile : "local");
         SpringApplication.run(Application.class, args);
     }
 
