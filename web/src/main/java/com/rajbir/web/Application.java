@@ -32,7 +32,10 @@ public class Application {
 
     public static void main(String[] args) {
         String activeProfile = System.getenv(Constants.ACTIVE_PROFILE);
-        System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, activeProfile != null ? activeProfile : "local");
+        if(activeProfile == null) {
+            throw new RuntimeException("No profile found to activate! please add default profile to environment vars('ACTIVE_PROFILE': 'local')");
+        }
+        System.setProperty(AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, activeProfile);
         SpringApplication.run(Application.class, args);
     }
 

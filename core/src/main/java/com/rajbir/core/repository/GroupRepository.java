@@ -11,4 +11,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GroupRepository extends JpaRepository<Group, Long>, GroupRepositoryCustom {
     public Page<Group> findAll(Pageable page);
+    public Group findByGroupId(String groupId);
 }

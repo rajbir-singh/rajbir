@@ -1,20 +1,30 @@
 package com.rajbir.core.controller;
 
 import com.rajbir.config.BaseController;
+import com.rajbir.config.RestResponse;
 import com.rajbir.core.domain.Group;
 import com.rajbir.core.domain.Post;
+import com.rajbir.core.dto.CreateGroupDto;
+import com.rajbir.core.dto.GroupSummaryDto;
 import com.rajbir.core.repository.PostRepository;
 import com.rajbir.core.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 /**
  * Created by Sony on 30-08-2017.
  */
-@RestController(value = "ap1/v1/group")
+@RestController(value = "api/v1/group")
 public class GroupController extends BaseController {
 
     @Autowired
@@ -35,13 +45,32 @@ public class GroupController extends BaseController {
         return groupService.findGroupsPageable(new PageRequest(page, size)).getContent();
     }
 
+//    TODO: create a exception handling controller to handle this
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    public ResponseEntity
+//    handleMethodArgumentNotValidException( MethodArgumentNotValidException error ) {
+//        return parseErrors(error.getBindingResult());
+//    }
 
+    //create group
+    @RequestMapping(value = "/create", method = PUT, consumes = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    private ResponseEntity<RestResponse<GroupSummaryDto>> createGroup(@Valid @RequestBody CreateGroupDto createGroupDto, BindingResult result) {
+        return ok(newRestResponse(groupService.createGroup(createGroupDto)));
+    }
+
+    @RequestMapping(value ="{groupId}", method = GET, consumes = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    private ResponseEntity<RestResponse<GroupSummaryDto>> getGroup(@PathVariable String groupId) {
+        return ok(newRestResponse(groupService.findByUserId(groupId)));
+    }
 
     @RequestMapping("/greet")
     public Post home() {
         return new Post.Builder()
                 .withByUserId("e")
                 .withByUserName("s")
+                .withGroup(null)
                 .build();
     }
 //    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)

@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * Created by Sony on 08-09-2017.
  */
-@Entity(name = "chat_group")
-@Table(name = "chat_group", indexes = {@Index(name = "index_groupId", columnList = "groupId")})
+@Entity(name = "[group]")
+@Table(name = "[group]", indexes = {@Index(name = "index_groupId", columnList = "groupId")})
 public class Group {
 
     @Id
@@ -20,8 +20,10 @@ public class Group {
     @Column(length = 100)
     private String groupName;
 
-//    @JoinColumn(referencedColumnName = "userId", name = "userId", nullable = false)
-    @ManyToMany(mappedBy = "groups", cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = User.class)
+    //    @JoinColumn(referencedColumnName = "userId", name = "userId", nullable = false)
+    @JoinTable(name = "group_users", joinColumns = {@JoinColumn(name = "groupId", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "userId", nullable = false, updatable = false)})
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = User.class)
     private List<User> users;
 
 //    @JoinColumn(referencedColumnName = "postId", name="postId", nullable = false)
@@ -32,7 +34,7 @@ public class Group {
     //orhphanRemoval : (Optional) Whether to apply the remove operation to entities that have been removed from the relationship and to cascade the remove operation to those entities.
 
     //unidirectional oneToMany mapping with posts, as of now I do need all posts of a group, not the other way around.
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "group")
     private List<Post> posts;
 
     //Hibernate requires no-args constructor
@@ -99,7 +101,7 @@ public class Group {
         private List<User> users;
         private List<Post> posts;
 
-        private Builder() {
+        public Builder() {
         }
 
         public static GroupNameStep group() {

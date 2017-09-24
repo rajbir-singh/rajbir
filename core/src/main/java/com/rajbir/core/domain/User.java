@@ -38,7 +38,7 @@ public class User {
     private String password;
 
 //    @JoinColumn(referencedColumnName = "groupId", name="groupIds", nullable = false)
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, targetEntity = Group.class)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users", targetEntity = Group.class)
     private List<Group> groups;
 
     @Column(length = 256)
