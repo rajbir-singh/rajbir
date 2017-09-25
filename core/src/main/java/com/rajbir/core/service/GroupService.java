@@ -32,6 +32,8 @@ public class GroupService {
         return groupRepository.findAll(page);
     }
 
+
+    //TODO: make it transactional
     public GroupSummaryDto createGroup(CreateGroupDto createGroupDto) {
         List<String> userIds = createGroupDto.getUserIds();
         List<User> groupUsers = new ArrayList<>();

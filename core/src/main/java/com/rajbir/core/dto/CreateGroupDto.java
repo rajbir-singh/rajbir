@@ -47,6 +47,8 @@ public class CreateGroupDto {
         CreateGroupDto build();
     }
 
+    public CreateGroupDto() {
+    }
 
     public static class Builder implements GroupNameStep, UserIdsStep, BuildStep {
         private String groupName;

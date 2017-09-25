@@ -24,7 +24,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 /**
  * Created by Sony on 30-08-2017.
  */
-@RestController(value = "api/v1/group")
+@RestController
+@RequestMapping(value = "api/v1/group")
 public class GroupController extends BaseController {
 
     @Autowired
@@ -45,7 +46,7 @@ public class GroupController extends BaseController {
         return groupService.findGroupsPageable(new PageRequest(page, size)).getContent();
     }
 
-//    TODO: create a exception handling controller to handle this
+//    TODO: create a exception handling controller to handle this, learn from ofb
 //    @ExceptionHandler(MethodArgumentNotValidException.class)
 //    public ResponseEntity
 //    handleMethodArgumentNotValidException( MethodArgumentNotValidException error ) {
@@ -56,10 +57,14 @@ public class GroupController extends BaseController {
     @RequestMapping(value = "/create", method = PUT, consumes = APPLICATION_JSON_VALUE)
     @ResponseBody
     private ResponseEntity<RestResponse<GroupSummaryDto>> createGroup(@Valid @RequestBody CreateGroupDto createGroupDto, BindingResult result) {
+        if (result.hasErrors()) {
+            RestResponse<String> restResponse = errorResponse(result.getFieldErrors());
+            return notAcceptable(restResponse);
+        }
         return ok(newRestResponse(groupService.createGroup(createGroupDto)));
     }
 
-    @RequestMapping(value ="{groupId}", method = GET, consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "{groupId}", method = GET, consumes = APPLICATION_JSON_VALUE)
     @ResponseBody
     private ResponseEntity<RestResponse<GroupSummaryDto>> getGroup(@PathVariable String groupId) {
         return ok(newRestResponse(groupService.findByUserId(groupId)));

@@ -1,6 +1,5 @@
 package com.rajbir.core.dto;
 
-import com.rajbir.core.domain.Group;
 import org.hibernate.validator.constraints.Email;
 
 import javax.validation.constraints.NotNull;
@@ -16,35 +15,21 @@ public class UserDto {
     private String userId;
 
     @NotNull
-//    @Column(length = 100)
     private String name;
 
     @Email(message = "{email.valid}")
-//    @Column(nullable = false, length = 100)
     private String email;
 
-//    @Column(length = 100)
     private String mobile;
 
     @Size(min = 2, max = 30, message = "{password.size}") //    The @Size annotation has message set to a string whose value is wrapped in curly braces. If you left the curly braces out, the value given to message would be the error message displayed to the user. But by using curly braces, you design at a property in a properties file that contains the actual message.
-//    @Column(length = 100)
     private String password;
 
-    private List<Group> groups;
+    private List<GroupDto> groups;
 
     private String aboutMe;
 
     public UserDto() {
-    }
-
-    public UserDto(String userId, String name, String email, String mobile, String password, List<Group> groups, String aboutMe) {
-        this.userId = userId;
-        this.name = name;
-        this.email = email;
-        this.mobile = mobile;
-        this.password = password;
-        this.groups = groups;
-        this.aboutMe = aboutMe;
     }
 
     public String getUserId() {
@@ -87,11 +72,11 @@ public class UserDto {
         this.password = password;
     }
 
-    public List<Group> getGroups() {
+    public List<GroupDto> getGroups() {
         return groups;
     }
 
-    public void setGroups(List<Group> groups) {
+    public void setGroups(List<GroupDto> groups) {
         this.groups = groups;
     }
 
@@ -100,6 +85,16 @@ public class UserDto {
     }
 
     public void setAboutMe(String aboutMe) {
+        this.aboutMe = aboutMe;
+    }
+
+    public UserDto(String userId, String name, String email, String mobile, String password, List<GroupDto> groups, String aboutMe) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.mobile = mobile;
+        this.password = password;
+        this.groups = groups;
         this.aboutMe = aboutMe;
     }
 
@@ -124,7 +119,7 @@ public class UserDto {
     }
 
     public static interface GroupsStep {
-        AboutMeStep withGroups(List<Group> groups);
+        AboutMeStep withGroups(List<GroupDto> groups);
     }
 
     public static interface AboutMeStep {
@@ -135,14 +130,13 @@ public class UserDto {
         UserDto build();
     }
 
-
     public static class Builder implements UserIdStep, NameStep, EmailStep, MobileStep, PasswordStep, GroupsStep, AboutMeStep, BuildStep {
         private String userId;
         private String name;
         private String email;
         private String mobile;
         private String password;
-        private List<Group> groups;
+        private List<GroupDto> groups;
         private String aboutMe;
 
         private Builder() {
@@ -183,7 +177,7 @@ public class UserDto {
         }
 
         @Override
-        public AboutMeStep withGroups(List<Group> groups) {
+        public AboutMeStep withGroups(List<GroupDto> groups) {
             this.groups = groups;
             return this;
         }

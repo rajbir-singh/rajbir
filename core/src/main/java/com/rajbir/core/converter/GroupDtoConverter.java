@@ -3,9 +3,7 @@ package com.rajbir.core.converter;
 import com.rajbir.core.domain.Group;
 import com.rajbir.core.domain.Post;
 import com.rajbir.core.domain.User;
-import com.rajbir.core.dto.GroupSummaryDto;
-import com.rajbir.core.dto.PostDto;
-import com.rajbir.core.dto.UserDto;
+import com.rajbir.core.dto.GroupDto;
 import com.rajbir.core.service.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +15,7 @@ import java.util.List;
  * Created by Sony on 24-09-2017.
  */
 @Component
-public class GroupSummaryDtoConverter implements DtoConverter<Group, GroupSummaryDto>{
+public class GroupDtoConverter implements DtoConverter<Group, GroupDto>{
 
     @Autowired
     private UserDtoConverter userDtoConverter;
@@ -26,35 +24,35 @@ public class GroupSummaryDtoConverter implements DtoConverter<Group, GroupSummar
     private PostDtoConverter postDtoConverter;
 
     @Override
-    public GroupSummaryDto convertToDto(Group group) {
+    public GroupDto convertToDto(Group group) {
         if(Utils.isEmptyObject(group)) {
             return null;
         }
 
         List<User> userList = group.getUsers();
-        List<UserDto> userDtos = new ArrayList<>();
+        List<String> userIds = new ArrayList<>();
         userList.forEach(user -> {
-            userDtos.add(userDtoConverter.convertToDto(user));
+            userIds.add(user.getUserId());
         });
 
 
         List<Post> posts = group.getPosts();
-        List<PostDto> postDtos = new ArrayList<>();
+        List<Long> postIds = new ArrayList<>();
         if(posts != null && !posts.isEmpty()){
             posts.forEach(post -> {
-                postDtos.add(postDtoConverter.convertToDto(post));
+                postIds.add(post.getPostId());
             });
         }
 
-        return new GroupSummaryDto.Builder().withGroupId(group.getGroupId())
+        return new GroupDto.Builder().withGroupId(group.getGroupId())
                 .withGroupName(group.getGroupName())
-                .withUsers(userDtos)
-                .withPosts(postDtos)
+                .withUserIds(userIds)
+                .withPostIds(postIds)
                 .build();
     }
 
     @Override
-    public Group convertFromDto(GroupSummaryDto groupSummaryDto) {
+    public Group convertFromDto(GroupDto groupDto) {
         return null;
     }
 }
