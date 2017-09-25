@@ -66,8 +66,8 @@ public class GroupController extends BaseController {
 
     @RequestMapping(value = "{groupId}", method = GET, consumes = APPLICATION_JSON_VALUE)
     @ResponseBody
-    private ResponseEntity<RestResponse<GroupSummaryDto>> getGroup(@PathVariable String groupId) {
-        return ok(newRestResponse(groupService.findByUserId(groupId)));
+    private ResponseEntity<RestResponse<GroupSummaryDto>> getGroup(@PathVariable Long groupId) {
+        return ok(newRestResponse(groupService.findByGroupId(groupId)));
     }
 
     @RequestMapping("/greet")

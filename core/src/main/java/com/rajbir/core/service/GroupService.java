@@ -51,7 +51,7 @@ public class GroupService {
         return groupSummaryDtoConverter.convertToDto(group);
     }
 
-    public GroupSummaryDto findByUserId(String groupId) {
+    public GroupSummaryDto findByGroupId(Long groupId) {
         Group group = groupRepository.findByGroupId(groupId);
         return groupSummaryDtoConverter.convertToDto(group);
     }

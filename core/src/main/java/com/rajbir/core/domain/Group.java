@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * Created by Sony on 08-09-2017.
  */
-@Entity(name = "[group]")
-@Table(name = "[group]", indexes = {@Index(name = "index_groupId", columnList = "groupId")})
+@Entity
+@Table(name = "\"group\"", indexes = {@Index(name = "index_groupId", columnList = "groupId")})
 public class Group {
 
     @Id
