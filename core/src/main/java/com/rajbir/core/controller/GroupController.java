@@ -2,7 +2,6 @@ package com.rajbir.core.controller;
 
 import com.rajbir.config.BaseController;
 import com.rajbir.config.RestResponse;
-import com.rajbir.core.domain.Group;
 import com.rajbir.core.domain.Post;
 import com.rajbir.core.dto.CreateGroupDto;
 import com.rajbir.core.dto.GroupSummaryDto;
@@ -42,8 +41,8 @@ public class GroupController extends BaseController {
 
     @RequestMapping(value = "/list", params = {"page", "size"}, method = RequestMethod.GET)
     @ResponseBody
-    private List<Group> getGroupsList(@RequestParam("page") int page, @RequestParam("size") int size) {
-        return groupService.findGroupsPageable(new PageRequest(page, size)).getContent();
+    private ResponseEntity<RestResponse<List<GroupSummaryDto>>> getGroupsList(@RequestParam("page") int page, @RequestParam("size") int size) {
+        return ok(newRestResponse(groupService.findGroupSummaryDtos(new PageRequest(page, size))));
     }
 
 //    TODO: create a exception handling controller to handle this, learn from ofb

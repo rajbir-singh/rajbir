@@ -1,5 +1,7 @@
 package com.rajbir.core.domain;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -38,7 +40,9 @@ public class User {
     private String password;
 
 //    @JoinColumn(referencedColumnName = "groupId", name="groupIds", nullable = false)
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "users", targetEntity = Group.class)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "users", targetEntity = Group.class)
+
     private List<Group> groups;
 
     @Column(length = 256)

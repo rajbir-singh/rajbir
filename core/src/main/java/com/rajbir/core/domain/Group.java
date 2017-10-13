@@ -1,5 +1,9 @@
 package com.rajbir.core.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -23,7 +27,9 @@ public class Group {
     //    @JoinColumn(referencedColumnName = "userId", name = "userId", nullable = false)
     @JoinTable(name = "group_users", joinColumns = {@JoinColumn(name = "groupId", nullable = false, updatable = false)},
             inverseJoinColumns = {@JoinColumn(name = "userId", nullable = false, updatable = false)})
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, targetEntity = User.class)
+    @ManyToMany(cascade = CascadeType.ALL, targetEntity = User.class)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonIgnore
     private List<User> users;
 
 //    @JoinColumn(referencedColumnName = "postId", name="postId", nullable = false)
@@ -34,6 +40,9 @@ public class Group {
     //orhphanRemoval : (Optional) Whether to apply the remove operation to entities that have been removed from the relationship and to cascade the remove operation to those entities.
 
     //unidirectional oneToMany mapping with posts, as of now I do need all posts of a group, not the other way around.
+    //TODO: check if you're able to delete from this association without 'orphanRemoval' option, is it required for delete operatioon
+    //orphanRemoval = true : means to delete those posts which no longer have association to a group, are now orphans and hence will be removed
+    //https://dzone.com/articles/hibernate-example-part-1
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "group")
     private List<Post> posts;
 

@@ -32,6 +32,13 @@ public class GroupService {
         return groupRepository.findAll(page);
     }
 
+    public List<GroupSummaryDto> findGroupSummaryDtos(PageRequest page) {
+        List<Group> groups = findGroupsPageable(page).getContent();
+        List<GroupSummaryDto> groupSummaryDtos = new ArrayList<>();
+        groups.forEach(group -> groupSummaryDtos.add(groupSummaryDtoConverter.convertToDto(group)));
+        return groupSummaryDtos;
+    }
+
 
     //TODO: make it transactional
     public GroupSummaryDto createGroup(CreateGroupDto createGroupDto) {

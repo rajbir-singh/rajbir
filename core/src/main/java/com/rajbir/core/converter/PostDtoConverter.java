@@ -21,6 +21,7 @@ public class PostDtoConverter implements DtoConverter<Post, PostDto> {
                 .withTime(post.getTime())
                 .withByUserId(post.getByUserId())
                 .withByUserName(post.getByUserName())
+                .withGroupId(post.getGroup().getGroupId())
                 .build();
     }
 

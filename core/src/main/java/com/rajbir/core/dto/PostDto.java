@@ -9,6 +9,7 @@ public class PostDto {
     private Long time;
     private String byUserId;
     private String byUserName;
+    private Long groupId;
 
     public Long getPostId() {
         return postId;
@@ -50,12 +51,21 @@ public class PostDto {
         this.byUserName = byUserName;
     }
 
-    public PostDto(Long postId, String message, Long time, String byUserId, String byUserName) {
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public PostDto(Long postId, String message, Long time, String byUserId, String byUserName, Long groupId) {
         this.postId = postId;
         this.message = message;
         this.time = time;
         this.byUserId = byUserId;
         this.byUserName = byUserName;
+        this.groupId = groupId;
     }
 
     public static interface PostIdStep {
@@ -75,20 +85,24 @@ public class PostDto {
     }
 
     public static interface ByUserNameStep {
-        BuildStep withByUserName(String byUserName);
+        GroupIdStep withByUserName(String byUserName);
+    }
+
+    public static interface GroupIdStep {
+        BuildStep withGroupId(Long groupId);
     }
 
     public static interface BuildStep {
         PostDto build();
     }
 
-
-    public static class Builder implements PostIdStep, MessageStep, TimeStep, ByUserIdStep, ByUserNameStep, BuildStep {
+    public static class Builder implements PostIdStep, MessageStep, TimeStep, ByUserIdStep, ByUserNameStep, GroupIdStep, BuildStep {
         private Long postId;
         private String message;
         private Long time;
         private String byUserId;
         private String byUserName;
+        private Long groupId;
 
         public Builder() {
         }
@@ -122,8 +136,14 @@ public class PostDto {
         }
 
         @Override
-        public BuildStep withByUserName(String byUserName) {
+        public GroupIdStep withByUserName(String byUserName) {
             this.byUserName = byUserName;
+            return this;
+        }
+
+        @Override
+        public BuildStep withGroupId(Long groupId) {
+            this.groupId = groupId;
             return this;
         }
 
@@ -134,7 +154,8 @@ public class PostDto {
                     this.message,
                     this.time,
                     this.byUserId,
-                    this.byUserName
+                    this.byUserName,
+                    this.groupId
             );
         }
     }
